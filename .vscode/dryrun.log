@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/renato/Desktop/go-projects/go-teste-unico'
+go run src/cmd/main.go
+make: Leaving directory `/Users/renato/Desktop/go-projects/go-teste-unico'
+ 
