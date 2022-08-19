@@ -1,0 +1,91 @@
+package entities
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/require"
+)
+
+func Test_Feira_Valid(t *testing.T) {
+	feira := NewFeira()
+	feira.Id = 1
+	feira.Long = 123
+	feira.Lat = 456
+	feira.SetCens = "setCens"
+	feira.Areap = 123
+	feira.CodDist = "CodDist"
+	feira.Distrito = "Distrito"
+	feira.CodSubPref = 789
+	feira.SubPrefe = "SubPref"
+	feira.Regiao5 = "Regiao5"
+	feira.Regiao8 = "Regiao8"
+	feira.NomeFeira = "NomeFeira"
+	feira.Registro = "Registro"
+	feira.Logradouro = "Logradouro"
+	feira.Numero = "Numero"
+	feira.Bairro = "Bairro"
+	feira.Referencia = "Referencia"
+
+	valid := feira.isValid()
+	require.NoError(t, valid)
+}
+
+func Test_Feira_Invalid_Nome(t *testing.T) {
+	feira := NewFeira()
+	feira.NomeFeira = "   "
+	feira.Regiao5 = "Regiao5"
+	feira.Bairro = "Bairro"
+	feira.Distrito = "Distrito"
+	feira.Logradouro = "Logradouro"
+
+	err := feira.isValid()
+	require.EqualError(t, errEmptyNomeFeira, err.Error())
+}
+
+func Test_Feira_Invalid_Regiao(t *testing.T) {
+	feira := NewFeira()
+	feira.NomeFeira = " aaaa  "
+	feira.Regiao5 = " "
+	feira.Bairro = "Bairro"
+	feira.Distrito = "Distrito"
+	feira.Logradouro = "Logradouro"
+
+	err := feira.isValid()
+	require.EqualError(t, errEmptyRegiao5, err.Error())
+}
+
+func Test_Feira_Invalid_Bairro(t *testing.T) {
+	feira := NewFeira()
+	feira.NomeFeira = " aaaa  "
+	feira.Regiao5 = "aaaa "
+	feira.Bairro = ""
+	feira.Distrito = "Distrito"
+	feira.Logradouro = "Logradouro"
+
+	err := feira.isValid()
+	require.EqualError(t, errEmptyBairro, err.Error())
+}
+
+func Test_Feira_Invalid_Distrito(t *testing.T) {
+	feira := NewFeira()
+	feira.NomeFeira = " aaaa  "
+	feira.Regiao5 = "aaaa "
+	feira.Bairro = "Bairro"
+	feira.Distrito = ""
+	feira.Logradouro = "Logradouro"
+
+	err := feira.isValid()
+	require.EqualError(t, errEmptyDistrito, err.Error())
+}
+
+func Test_Feira_Invalid_Logradouro(t *testing.T) {
+	feira := NewFeira()
+	feira.NomeFeira = " aaaa  "
+	feira.Regiao5 = "aaaa "
+	feira.Bairro = "bairo"
+	feira.Distrito = "Distrito"
+	feira.Logradouro = ""
+
+	err := feira.isValid()
+	require.EqualError(t, errEmptyLogradouro, err.Error())
+}
