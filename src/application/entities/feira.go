@@ -6,22 +6,17 @@ import (
 )
 
 var (
-	errEmptyNomeFeira  = errors.New("nome da feira vazio")
-	errEmptyRegiao5    = errors.New("região5 vazio")
-	errEmptyBairro     = errors.New("bairro vazio")
-	errEmptyDistrito   = errors.New("distrito vazio")
-	errEmptyLogradouro = errors.New("logradouro vazio")
+	ErrEmptyNomeFeira  = errors.New("nome da feira vazio")
+	ErrEmptyRegiao5    = errors.New("região5 vazio")
+	ErrEmptyBairro     = errors.New("bairro vazio")
+	ErrEmptyDistrito   = errors.New("distrito vazio")
+	ErrEmptyLogradouro = errors.New("logradouro vazio")
 )
 
 type Feira struct {
-	Id         int64
-	Long       int64
-	Lat        int64
 	SetCens    string
-	Areap      int64
 	CodDist    string
 	Distrito   string
-	CodSubPref int64
 	SubPrefe   string
 	Regiao5    string
 	Regiao8    string
@@ -31,27 +26,32 @@ type Feira struct {
 	Numero     string
 	Bairro     string
 	Referencia string
+	Id         int64
+	Long       int64
+	Lat        int64
+	Areap      int64
+	CodSubPref int64
 }
 
 func NewFeira() Feira {
 	return Feira{}
 }
 
-func (h *Feira) isValid() error {
+func (h *Feira) IsValid() error {
 	if len(strings.TrimSpace(h.NomeFeira)) == 0 {
-		return errEmptyNomeFeira
+		return ErrEmptyNomeFeira
 	}
 	if len(strings.TrimSpace(h.Regiao5)) == 0 {
-		return errEmptyRegiao5
+		return ErrEmptyRegiao5
 	}
 	if len(strings.TrimSpace(h.Bairro)) == 0 {
-		return errEmptyBairro
+		return ErrEmptyBairro
 	}
 	if len(strings.TrimSpace(h.Distrito)) == 0 {
-		return errEmptyDistrito
+		return ErrEmptyDistrito
 	}
 	if len(strings.TrimSpace(h.Logradouro)) == 0 {
-		return errEmptyLogradouro
+		return ErrEmptyLogradouro
 	}
 	return nil
 }

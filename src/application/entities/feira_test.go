@@ -26,7 +26,7 @@ func Test_Feira_Valid(t *testing.T) {
 	feira.Bairro = "Bairro"
 	feira.Referencia = "Referencia"
 
-	valid := feira.isValid()
+	valid := feira.IsValid()
 	require.NoError(t, valid)
 }
 
@@ -38,8 +38,8 @@ func Test_Feira_Invalid_Nome(t *testing.T) {
 	feira.Distrito = "Distrito"
 	feira.Logradouro = "Logradouro"
 
-	err := feira.isValid()
-	require.EqualError(t, errEmptyNomeFeira, err.Error())
+	err := feira.IsValid()
+	require.EqualError(t, ErrEmptyNomeFeira, err.Error())
 }
 
 func Test_Feira_Invalid_Regiao(t *testing.T) {
@@ -50,8 +50,8 @@ func Test_Feira_Invalid_Regiao(t *testing.T) {
 	feira.Distrito = "Distrito"
 	feira.Logradouro = "Logradouro"
 
-	err := feira.isValid()
-	require.EqualError(t, errEmptyRegiao5, err.Error())
+	err := feira.IsValid()
+	require.EqualError(t, ErrEmptyRegiao5, err.Error())
 }
 
 func Test_Feira_Invalid_Bairro(t *testing.T) {
@@ -62,8 +62,8 @@ func Test_Feira_Invalid_Bairro(t *testing.T) {
 	feira.Distrito = "Distrito"
 	feira.Logradouro = "Logradouro"
 
-	err := feira.isValid()
-	require.EqualError(t, errEmptyBairro, err.Error())
+	err := feira.IsValid()
+	require.EqualError(t, ErrEmptyBairro, err.Error())
 }
 
 func Test_Feira_Invalid_Distrito(t *testing.T) {
@@ -74,8 +74,8 @@ func Test_Feira_Invalid_Distrito(t *testing.T) {
 	feira.Distrito = ""
 	feira.Logradouro = "Logradouro"
 
-	err := feira.isValid()
-	require.EqualError(t, errEmptyDistrito, err.Error())
+	err := feira.IsValid()
+	require.EqualError(t, ErrEmptyDistrito, err.Error())
 }
 
 func Test_Feira_Invalid_Logradouro(t *testing.T) {
@@ -86,6 +86,6 @@ func Test_Feira_Invalid_Logradouro(t *testing.T) {
 	feira.Distrito = "Distrito"
 	feira.Logradouro = ""
 
-	err := feira.isValid()
-	require.EqualError(t, errEmptyLogradouro, err.Error())
+	err := feira.IsValid()
+	require.EqualError(t, ErrEmptyLogradouro, err.Error())
 }
