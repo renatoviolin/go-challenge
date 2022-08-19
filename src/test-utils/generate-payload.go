@@ -7,7 +7,6 @@ import (
 
 func GenerateFeiraEntity(nome string) entities.Feira {
 	return entities.Feira{
-		Id:         1,
 		Long:       123,
 		Lat:        456,
 		SetCens:    "setCens",
@@ -29,7 +28,6 @@ func GenerateFeiraEntity(nome string) entities.Feira {
 
 func GenerateFeiraDto(nome string) dto.Feira {
 	return dto.Feira{
-		Id:         1,
 		Long:       123,
 		Lat:        456,
 		SetCens:    "setCens",

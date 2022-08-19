@@ -2,7 +2,7 @@ package create_feira
 
 import (
 	"api-unico/application/entities"
-	"api-unico/repository"
+	"api-unico/repository/inMemory"
 	test_utils "api-unico/test-utils"
 	"testing"
 
@@ -11,18 +11,19 @@ import (
 
 func Test_CreateFeira_Valid(t *testing.T) {
 	feira := test_utils.GenerateFeiraEntity("nome da feira")
-	repository := repository.NewFeiraRepository()
+	repository := inMemory.NewFeiraRepository()
 	service := NewCreateFeiraService(&repository)
 
-	err := service.Execute(entities.Feira(feira))
+	_, err := service.Execute(entities.Feira(feira))
 	require.NoError(t, err)
 }
 
 func Test_CreateFeira_Invalid_Name(t *testing.T) {
-	feira := test_utils.GenerateFeiraEntity("  ")
-	repository := repository.NewFeiraRepository()
+	feira := test_utils.GenerateFeiraEntity("")
+	repository := inMemory.NewFeiraRepository()
 	service := NewCreateFeiraService(&repository)
 
-	err := service.Execute(entities.Feira(feira))
+	id, err := service.Execute(entities.Feira(feira))
 	require.Equal(t, entities.ErrEmptyNomeFeira, err)
+	require.Equal(t, id, int64(0))
 }

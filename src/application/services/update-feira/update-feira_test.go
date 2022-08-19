@@ -1,8 +1,8 @@
 package update_feira
 
 import (
-	"api-unico/application/entities"
-	"api-unico/repository"
+	create_feira "api-unico/application/services/create-feira"
+	"api-unico/repository/inMemory"
 	test_utils "api-unico/test-utils"
 	"testing"
 
@@ -11,18 +11,44 @@ import (
 
 func Test_UpdateFeira_Valid(t *testing.T) {
 	feira := test_utils.GenerateFeiraEntity("nome da feira")
-	repository := repository.NewFeiraRepository()
-	service := NewUpdateFeiraService(&repository)
+	repository := inMemory.NewFeiraRepository()
 
-	err := service.Execute(entities.Feira(feira))
+	// create new feira
+	serviceCreate := create_feira.NewCreateFeiraService(&repository)
+	newId, err := serviceCreate.Execute(feira)
 	require.NoError(t, err)
+
+	// update feira
+	service := NewUpdateFeiraService(&repository)
+	feira.Id = newId
+	feira.NomeFeira = "novo nome de feira"
+	err = service.Execute(feira)
+	require.NoError(t, err)
+
+	// retrieve feira
+	feiraDto, err := repository.Get(newId)
+	require.NoError(t, err)
+	require.Equal(t, feira.NomeFeira, feiraDto.NomeFeira)
 }
 
-func Test_UpdateFeira_Invalid_Name(t *testing.T) {
-	feira := test_utils.GenerateFeiraEntity("  ")
-	repository := repository.NewFeiraRepository()
-	service := NewUpdateFeiraService(&repository)
+func Test_UpdateFeira_Invalid(t *testing.T) {
+	feira := test_utils.GenerateFeiraEntity("nome da feira")
+	repository := inMemory.NewFeiraRepository()
 
-	err := service.Execute(entities.Feira(feira))
-	require.Equal(t, entities.ErrEmptyNomeFeira, err)
+	// create new feira
+	serviceCreate := create_feira.NewCreateFeiraService(&repository)
+	newId, err := serviceCreate.Execute(feira)
+	require.NoError(t, err)
+
+	// update feira
+	service := NewUpdateFeiraService(&repository)
+	feira.Id = int64(-1)
+	feira.NomeFeira = "novo nome de feira"
+	err = service.Execute(feira)
+	require.Error(t, err)
+
+	// retrieve feira
+	feiraDto, err := repository.Get(newId)
+	require.NoError(t, err)
+	require.Equal(t, "nome da feira", feiraDto.NomeFeira)
 }

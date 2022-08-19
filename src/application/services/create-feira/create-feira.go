@@ -16,9 +16,9 @@ func NewCreateFeiraService(repository interfaces.FeiraRepository) createFeiraSer
 	}
 }
 
-func (h *createFeiraService) Execute(input entities.Feira) (err error) {
+func (h *createFeiraService) Execute(input entities.Feira) (id int64, err error) {
 	if err := input.IsValid(); err != nil {
-		return err
+		return 0, err
 	}
 
 	feiraPayload := dto.Feira{
@@ -40,9 +40,10 @@ func (h *createFeiraService) Execute(input entities.Feira) (err error) {
 		Areap:      input.Areap,
 		CodSubPref: input.CodSubPref,
 	}
-	if err = h.repository.Create(feiraPayload); err != nil {
-		return err
+	id, err = h.repository.Create(feiraPayload)
+	if err != nil {
+		return 0, err
 	}
 
-	return nil
+	return id, err
 }
