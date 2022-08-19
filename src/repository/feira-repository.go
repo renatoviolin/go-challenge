@@ -12,3 +12,7 @@ func NewFeiraRepository() feiraRepository {
 func (h *feiraRepository) Create(dto.Feira) error {
 	return nil
 }
+
+func (h *feiraRepository) Update(dto.Feira) error {
+	return nil
+}

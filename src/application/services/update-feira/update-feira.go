@@ -1,4 +1,4 @@
-package services
+package update_feira
 
 import (
 	"api-unico/application/entities"
@@ -6,17 +6,17 @@ import (
 	"api-unico/dto"
 )
 
-type createFeiraService struct {
+type updateFeiraService struct {
 	repository interfaces.FeiraRepository
 }
 
-func NewCreateFeiraService(repository interfaces.FeiraRepository) createFeiraService {
-	return createFeiraService{
+func NewUpdateFeiraService(repository interfaces.FeiraRepository) updateFeiraService {
+	return updateFeiraService{
 		repository: repository,
 	}
 }
 
-func (h *createFeiraService) Execute(input entities.Feira) (err error) {
+func (h *updateFeiraService) Execute(input entities.Feira) (err error) {
 	if err := input.IsValid(); err != nil {
 		return err
 	}
@@ -40,7 +40,7 @@ func (h *createFeiraService) Execute(input entities.Feira) (err error) {
 		Areap:      input.Areap,
 		CodSubPref: input.CodSubPref,
 	}
-	if err = h.repository.Create(feiraPayload); err != nil {
+	if err = h.repository.Update(feiraPayload); err != nil {
 		return err
 	}
 

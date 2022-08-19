@@ -1,4 +1,4 @@
-package services
+package create_feira
 
 import (
 	"api-unico/application/entities"
