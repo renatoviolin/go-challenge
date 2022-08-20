@@ -31,5 +31,9 @@ func (h *HttpServer) Routes() http.Handler {
 	h.router.GET("/api/v1/feira/distrito/:query", h.findByDistrito)
 	h.router.GET("/api/v1/feira/bairro/:query", h.findByBairro)
 
+	h.router.POST("/api/v1/feira", h.create)
+	h.router.PUT("/api/v1/feira", h.update)
+	h.router.DELETE("/api/v1/feira/:id", h.delete)
+
 	return h.router
 }

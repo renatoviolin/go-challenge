@@ -41,3 +41,42 @@
 {"level":"error","from":"GetFeiraService","message":"resource not found"}
 {"level":"warn","from":"http","method":"GET","path":"/api/v1/feira/distrito/distrita","resp_time":5.872541,"status":404,"ip":"::1","message":"request"}
 {"level":"info","from":"http","method":"GET","path":"/api/v1/feira/distrito/distrito","resp_time":5.76625,"status":200,"ip":"::1","message":"request"}
+{"level":"info","message":"Starting server on port 8000"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/distrito/distrito","resp_time":8.063125,"status":200,"ip":"::1","message":"request"}
+{"level":"warn","from":"http","method":"POST","path":"/api/v1/feira","resp_time":0.034542,"status":400,"ip":"::1","message":"request"}
+{"level":"warn","from":"http","method":"POST","path":"/api/v1/feira","resp_time":0.027125,"status":400,"ip":"::1","message":"request"}
+{"level":"error","from":"CreateFeiraService","message":"empty região5"}
+{"level":"warn","from":"http","method":"POST","path":"/api/v1/feira","resp_time":0.258959,"status":400,"ip":"::1","message":"request"}
+{"level":"warn","from":"http","method":"POST","path":"/api/v1/feira","resp_time":4.133625,"status":400,"ip":"::1","message":"request"}
+{"level":"error","from":"CreateFeiraService","message":"empty bairro"}
+{"level":"warn","from":"http","method":"POST","path":"/api/v1/feira","resp_time":0.119167,"status":400,"ip":"::1","message":"request"}
+{"level":"warn","from":"http","method":"POST","path":"/api/v1/feira","resp_time":0.035208,"status":400,"ip":"::1","message":"request"}
+{"level":"warn","from":"http","method":"POST","path":"/api/v1/feira","resp_time":0.042959,"status":400,"ip":"::1","message":"request"}
+{"level":"error","from":"CreateFeiraService","message":"empty distrito"}
+{"level":"warn","from":"http","method":"POST","path":"/api/v1/feira","resp_time":0.130958,"status":400,"ip":"::1","message":"request"}
+{"level":"error","from":"CreateFeiraService","message":"empty logradouro"}
+{"level":"warn","from":"http","method":"POST","path":"/api/v1/feira","resp_time":0.154083,"status":400,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"POST","path":"/api/v1/feira","resp_time":9.344,"status":201,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"POST","path":"/api/v1/feira","resp_time":7.149875,"status":201,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/nome/nome_feira","resp_time":5.339459,"status":200,"ip":"::1","message":"request"}
+{"level":"warn","from":"http","method":"POST","path":"/api/v1/feira","resp_time":0.068083,"status":400,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"POST","path":"/api/v1/feira","resp_time":7.33075,"status":201,"ip":"::1","message":"request"}
+{"level":"info","message":"Starting server on port 8000"}
+{"level":"error","from":"UpdateFeiraService","message":"resource not found"}
+{"level":"warn","from":"http","method":"PUT","path":"/api/v1/feira","resp_time":2.983083,"status":400,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"PUT","path":"/api/v1/feira","resp_time":8.5105,"status":201,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"PUT","path":"/api/v1/feira","resp_time":5.660833,"status":201,"ip":"::1","message":"request"}
+{"level":"warn","from":"http","method":"PUT","path":"/api/v1/feira","resp_time":0.075791,"status":400,"ip":"::1","message":"request"}
+{"level":"error","from":"UpdateFeiraService","message":"empty nome_feira"}
+{"level":"warn","from":"http","method":"PUT","path":"/api/v1/feira","resp_time":0.176792,"status":400,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/nome/nome_feira-que-foi-atualizada","resp_time":6.58375,"status":200,"ip":"::1","message":"request"}
+{"level":"info","message":"Starting server on port 8000"}
+{"level":"error","from":"DeleteFeiraService","message":"resource not found"}
+{"level":"warn","from":"http","method":"DELETE","path":"/api/v1/feira/9999","resp_time":7.661958,"status":400,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/nome/nome_feira-que-foi-atualizada","resp_time":4.8125,"status":200,"ip":"::1","message":"request"}
+{"level":"warn","from":"http","method":"DELETE","path":"/api/v1/feira/","resp_time":0.000375,"status":404,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"DELETE","path":"/api/v1/feira/82","resp_time":9.001667,"status":201,"ip":"::1","message":"request"}
+{"level":"error","from":"GetFeiraService","message":"resource not found"}
+{"level":"warn","from":"http","method":"GET","path":"/api/v1/feira/nome/nome_feira-que-foi-atualizada","resp_time":14.35625,"status":404,"ip":"::1","message":"request"}
+{"level":"info","message":"Starting server on port 8000"}
+{"level":"info","from":"http","method":"DELETE","path":"/api/v1/feira/110","resp_time":12.361042,"status":200,"ip":"::1","message":"request"}
