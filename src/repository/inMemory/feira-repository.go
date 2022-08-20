@@ -3,6 +3,7 @@ package inMemory
 import (
 	"api-unico/dto"
 	"errors"
+	"fmt"
 	"math/rand"
 )
 
@@ -48,4 +49,53 @@ func (h *feiraRepository) Delete(id int64) error {
 		}
 	}
 	return errors.New("resource not found")
+}
+
+func (h *feiraRepository) FindBy(queryString string, queryParam string) ([]dto.Feira, error) {
+	var result []dto.Feira
+	if queryParam == "distrito" {
+		for i := range h.database {
+			if h.database[i].Distrito == queryString {
+				result = append(result, h.database[i])
+			}
+		}
+		if len(result) == 0 {
+			return result, errors.New("resource not found")
+		}
+		return result, nil
+	}
+	if queryParam == "regiao5" {
+		for i := range h.database {
+			if h.database[i].Regiao5 == queryString {
+				result = append(result, h.database[i])
+			}
+		}
+		if len(result) == 0 {
+			return result, errors.New("resource not found")
+		}
+		return result, nil
+	}
+	if queryParam == "nome_feira" {
+		for i := range h.database {
+			if h.database[i].NomeFeira == queryString {
+				result = append(result, h.database[i])
+			}
+		}
+		if len(result) == 0 {
+			return result, errors.New("resource not found")
+		}
+		return result, nil
+	}
+	if queryParam == "bairro" {
+		for i := range h.database {
+			if h.database[i].Bairro == queryString {
+				result = append(result, h.database[i])
+			}
+		}
+		if len(result) == 0 {
+			return result, errors.New("resource not found")
+		}
+		return result, nil
+	}
+	return result, fmt.Errorf("invalid query param: %s", queryParam)
 }
