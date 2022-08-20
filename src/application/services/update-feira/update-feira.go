@@ -4,6 +4,7 @@ import (
 	"api-unico/application/entities"
 	"api-unico/application/interfaces"
 	"api-unico/dto"
+	"api-unico/infra/logger"
 )
 
 type UpdateFeiraService struct {
@@ -18,6 +19,7 @@ func NewUpdateFeiraService(repository interfaces.FeiraRepository) UpdateFeiraSer
 
 func (h *UpdateFeiraService) Execute(input entities.Feira) (err error) {
 	if err := input.IsValid(); err != nil {
+		logger.LogError("UpdateFeiraService", err.Error())
 		return err
 	}
 
@@ -41,6 +43,7 @@ func (h *UpdateFeiraService) Execute(input entities.Feira) (err error) {
 		CodSubPref: input.CodSubPref,
 	}
 	if err = h.repository.Update(feiraPayload); err != nil {
+		logger.LogError("UpdateFeiraService", err.Error())
 		return err
 	}
 

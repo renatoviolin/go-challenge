@@ -1,9 +1,10 @@
 package database
 
 import (
+	"api-unico/infra/logger"
+
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
-	"github.com/rs/zerolog/log"
 )
 
 type postgreSQLConnection struct {
@@ -13,7 +14,7 @@ type postgreSQLConnection struct {
 func NewPostgreSQLConnection(connectionString string) postgreSQLConnection {
 	db, err := sqlx.Connect("postgres", connectionString)
 	if err != nil {
-		log.Fatal().Msg(err.Error())
+		logger.Logger.Fatal().Msg(err.Error())
 	}
 
 	return postgreSQLConnection{

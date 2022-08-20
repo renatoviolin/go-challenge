@@ -4,6 +4,7 @@ import (
 	"api-unico/application/entities"
 	"api-unico/application/interfaces"
 	"api-unico/dto"
+	"api-unico/infra/logger"
 )
 
 type CreateFeiraService struct {
@@ -18,6 +19,7 @@ func NewCreateFeiraService(repository interfaces.FeiraRepository) CreateFeiraSer
 
 func (h *CreateFeiraService) Execute(input entities.Feira) (id int64, err error) {
 	if err := input.IsValid(); err != nil {
+		logger.LogError("CreateFeiraService", err.Error())
 		return 0, err
 	}
 
@@ -42,6 +44,7 @@ func (h *CreateFeiraService) Execute(input entities.Feira) (id int64, err error)
 	}
 	id, err = h.repository.Create(feiraPayload)
 	if err != nil {
+		logger.LogError("CreateFeiraService", err.Error())
 		return 0, err
 	}
 

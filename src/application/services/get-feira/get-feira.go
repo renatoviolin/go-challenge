@@ -3,6 +3,7 @@ package get_feira
 import (
 	"api-unico/application/interfaces"
 	"api-unico/dto"
+	"api-unico/infra/logger"
 )
 
 type queryParam struct {
@@ -29,6 +30,7 @@ func NewGetFeiraService(repository interfaces.FeiraRepository) GetFeiraService {
 
 func (h *GetFeiraService) Execute(queryBy queryParam, queryString string) (output []dto.Feira, err error) {
 	if output, err = h.repository.FindBy(queryBy.value, queryString); err != nil {
+		logger.LogError("GetFeiraService", err.Error())
 		return output, err
 	}
 

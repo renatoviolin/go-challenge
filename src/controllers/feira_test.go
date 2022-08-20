@@ -26,10 +26,10 @@ func generateInjections() FeiraController {
 	getFeiraService := get_feira.NewGetFeiraService(&repository)
 
 	return FeiraController{
-		createFeiraService: createFeiraService,
-		updateFeiraService: updateFeiraService,
-		deleteFeiraService: deleteFeiraService,
-		getFeiraService:    getFeiraService,
+		CreateFeiraService: createFeiraService,
+		UpdateFeiraService: updateFeiraService,
+		DeleteFeiraService: deleteFeiraService,
+		GetFeiraService:    getFeiraService,
 	}
 
 }

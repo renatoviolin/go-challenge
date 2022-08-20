@@ -10,10 +10,10 @@ import (
 )
 
 type FeiraController struct {
-	createFeiraService create_feira.CreateFeiraService
-	updateFeiraService update_feira.UpdateFeiraService
-	deleteFeiraService delete_feira.DeleteFeiraService
-	getFeiraService    get_feira.GetFeiraService
+	CreateFeiraService create_feira.CreateFeiraService
+	UpdateFeiraService update_feira.UpdateFeiraService
+	DeleteFeiraService delete_feira.DeleteFeiraService
+	GetFeiraService    get_feira.GetFeiraService
 }
 
 func NewFeiraController(
@@ -22,10 +22,10 @@ func NewFeiraController(
 	deleteFeira delete_feira.DeleteFeiraService,
 	getFeira get_feira.GetFeiraService) FeiraController {
 	return FeiraController{
-		createFeiraService: createFeira,
-		updateFeiraService: updateFeira,
-		deleteFeiraService: deleteFeira,
-		getFeiraService:    getFeira,
+		CreateFeiraService: createFeira,
+		UpdateFeiraService: updateFeira,
+		DeleteFeiraService: deleteFeira,
+		GetFeiraService:    getFeira,
 	}
 }
 
@@ -49,7 +49,7 @@ func (h *FeiraController) Create(input dto.Feira) (int64, error) {
 		Areap:      input.Areap,
 		CodSubPref: input.CodSubPref,
 	}
-	return h.createFeiraService.Execute(feira)
+	return h.CreateFeiraService.Execute(feira)
 }
 
 func (h *FeiraController) Update(input dto.Feira) error {
@@ -72,25 +72,25 @@ func (h *FeiraController) Update(input dto.Feira) error {
 		Areap:      input.Areap,
 		CodSubPref: input.CodSubPref,
 	}
-	return h.updateFeiraService.Execute(feira)
+	return h.UpdateFeiraService.Execute(feira)
 }
 
 func (h *FeiraController) Delete(id int64) error {
-	return h.deleteFeiraService.Execute(id)
+	return h.DeleteFeiraService.Execute(id)
 }
 
 func (h *FeiraController) FindByNome(query string) ([]dto.Feira, error) {
-	return h.getFeiraService.Execute(h.getFeiraService.NomeFeira, query)
+	return h.GetFeiraService.Execute(h.GetFeiraService.NomeFeira, query)
 }
 
 func (h *FeiraController) FindByBairro(query string) ([]dto.Feira, error) {
-	return h.getFeiraService.Execute(h.getFeiraService.Bairro, query)
+	return h.GetFeiraService.Execute(h.GetFeiraService.Bairro, query)
 }
 
 func (h *FeiraController) FindByDistrito(query string) ([]dto.Feira, error) {
-	return h.getFeiraService.Execute(h.getFeiraService.Distrito, query)
+	return h.GetFeiraService.Execute(h.GetFeiraService.Distrito, query)
 }
 
 func (h *FeiraController) FindByRegiao(query string) ([]dto.Feira, error) {
-	return h.getFeiraService.Execute(h.getFeiraService.Regiao, query)
+	return h.GetFeiraService.Execute(h.GetFeiraService.Regiao, query)
 }

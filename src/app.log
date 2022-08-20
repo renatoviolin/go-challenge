@@ -1,0 +1,8 @@
+{"level":"info","message":"Starting server on port 8000"}
+{"level":"warn","type":"http","method":"GET","path":"/api/v1/health/asdasd","resp_time":0.000166,"status":404,"ip":"::1","message":"request"}
+{"level":"info","type":"http","method":"GET","path":"/api/v1/health","resp_time":0.32725,"status":200,"ip":"127.0.0.1","message":"request"}
+{"level":"info","type":"http","method":"GET","path":"/api/v1/health","resp_time":0.1,"status":200,"ip":"127.0.0.1","message":"request"}
+{"level":"info","type":"http","method":"GET","path":"/api/v1/health","resp_time":0.0815,"status":200,"ip":"127.0.0.1","message":"request"}
+{"level":"info","message":"Starting server on port 8000"}
+{"level":"error","from":"healthCheck","message":"testando um error"}
+{"level":"info","type":"http","method":"GET","path":"/api/v1/health","resp_time":0.173292,"status":200,"ip":"127.0.0.1","message":"request"}
