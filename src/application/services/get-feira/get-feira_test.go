@@ -18,7 +18,7 @@ func Test_GetFeira_ByNomeFeira(t *testing.T) {
 	require.NoError(t, err)
 
 	serviceGetFeira := NewGetFeiraService(&repository)
-	results, err := serviceGetFeira.Execute("nome-feira", serviceGetFeira.NomeFeira)
+	results, err := serviceGetFeira.Execute(serviceGetFeira.NomeFeira, "nome-feira")
 	require.NoError(t, err)
 	require.GreaterOrEqual(t, len(results), 1)
 }
@@ -33,7 +33,7 @@ func Test_GetFeira_ByRegiao5(t *testing.T) {
 	require.NoError(t, err)
 
 	serviceGetFeira := NewGetFeiraService(&repository)
-	results, err := serviceGetFeira.Execute("nome de uma regiao 5", serviceGetFeira.Regiao)
+	results, err := serviceGetFeira.Execute(serviceGetFeira.Regiao, "nome de uma regiao 5")
 	require.NoError(t, err)
 	require.GreaterOrEqual(t, len(results), 1)
 }
@@ -48,7 +48,7 @@ func Test_GetFeira_ByDistrito(t *testing.T) {
 	require.NoError(t, err)
 
 	serviceGetFeira := NewGetFeiraService(&repository)
-	results, err := serviceGetFeira.Execute("nome de um distrito", serviceGetFeira.Distrito)
+	results, err := serviceGetFeira.Execute(serviceGetFeira.Distrito, "nome de um distrito")
 	require.NoError(t, err)
 	require.GreaterOrEqual(t, len(results), 1)
 }
@@ -63,7 +63,7 @@ func Test_GetFeira_ByBairro(t *testing.T) {
 	require.NoError(t, err)
 
 	serviceGetFeira := NewGetFeiraService(&repository)
-	results, err := serviceGetFeira.Execute("nome de um bairro", serviceGetFeira.Bairro)
+	results, err := serviceGetFeira.Execute(serviceGetFeira.Bairro, "nome de um bairro")
 	require.NoError(t, err)
 	require.GreaterOrEqual(t, len(results), 1)
 }
@@ -77,7 +77,7 @@ func Test_GetFeira_NotFound(t *testing.T) {
 	require.NoError(t, err)
 
 	serviceGetFeira := NewGetFeiraService(&repository)
-	results, err := serviceGetFeira.Execute("nome-feira-2", serviceGetFeira.NomeFeira)
+	results, err := serviceGetFeira.Execute(serviceGetFeira.NomeFeira, "nome-feira-2")
 	require.Error(t, err)
 	require.Empty(t, results)
 }

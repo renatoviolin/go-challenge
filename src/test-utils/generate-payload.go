@@ -9,7 +9,7 @@ func GenerateFeiraEntity(nome string) entities.Feira {
 	return entities.Feira{
 		Long:       123,
 		Lat:        456,
-		SetCens:    "setCens",
+		SetCens:    123123,
 		Areap:      123,
 		CodDist:    "CodDist",
 		Distrito:   "Distrito",
@@ -30,7 +30,7 @@ func GenerateFeiraDto(nome string) dto.Feira {
 	return dto.Feira{
 		Long:       123,
 		Lat:        456,
-		SetCens:    "setCens",
+		SetCens:    13123,
 		Areap:      123,
 		CodDist:    "CodDist",
 		Distrito:   "Distrito",

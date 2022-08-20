@@ -51,11 +51,11 @@ func (h *feiraRepository) Delete(id int64) error {
 	return errors.New("resource not found")
 }
 
-func (h *feiraRepository) FindBy(queryString string, queryParam string) ([]dto.Feira, error) {
+func (h *feiraRepository) FindBy(column string, query string) ([]dto.Feira, error) {
 	var result []dto.Feira
-	if queryParam == "distrito" {
+	if column == "distrito" {
 		for i := range h.database {
-			if h.database[i].Distrito == queryString {
+			if h.database[i].Distrito == query {
 				result = append(result, h.database[i])
 			}
 		}
@@ -64,9 +64,9 @@ func (h *feiraRepository) FindBy(queryString string, queryParam string) ([]dto.F
 		}
 		return result, nil
 	}
-	if queryParam == "regiao5" {
+	if column == "regiao5" {
 		for i := range h.database {
-			if h.database[i].Regiao5 == queryString {
+			if h.database[i].Regiao5 == query {
 				result = append(result, h.database[i])
 			}
 		}
@@ -75,9 +75,9 @@ func (h *feiraRepository) FindBy(queryString string, queryParam string) ([]dto.F
 		}
 		return result, nil
 	}
-	if queryParam == "nome_feira" {
+	if column == "nome_feira" {
 		for i := range h.database {
-			if h.database[i].NomeFeira == queryString {
+			if h.database[i].NomeFeira == query {
 				result = append(result, h.database[i])
 			}
 		}
@@ -86,9 +86,9 @@ func (h *feiraRepository) FindBy(queryString string, queryParam string) ([]dto.F
 		}
 		return result, nil
 	}
-	if queryParam == "bairro" {
+	if column == "bairro" {
 		for i := range h.database {
-			if h.database[i].Bairro == queryString {
+			if h.database[i].Bairro == query {
 				result = append(result, h.database[i])
 			}
 		}
@@ -97,5 +97,5 @@ func (h *feiraRepository) FindBy(queryString string, queryParam string) ([]dto.F
 		}
 		return result, nil
 	}
-	return result, fmt.Errorf("invalid query param: %s", queryParam)
+	return result, fmt.Errorf("invalid query param: %s", column)
 }

@@ -11,7 +11,7 @@ func Test_Feira_Valid(t *testing.T) {
 	feira.Id = 1
 	feira.Long = 123
 	feira.Lat = 456
-	feira.SetCens = "setCens"
+	feira.SetCens = 123123
 	feira.Areap = 123
 	feira.CodDist = "CodDist"
 	feira.Distrito = "Distrito"

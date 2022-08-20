@@ -6,5 +6,5 @@ type FeiraRepository interface {
 	Create(dto.Feira) (int64, error)
 	Update(dto.Feira) error
 	Delete(id int64) error
-	FindBy(query string, queryParam string) ([]dto.Feira, error)
+	FindBy(column string, query string) ([]dto.Feira, error)
 }

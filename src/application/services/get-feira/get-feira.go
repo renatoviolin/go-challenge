@@ -9,8 +9,6 @@ type queryParam struct {
 	value string
 }
 
-const ()
-
 type getFeiraService struct {
 	repository interfaces.FeiraRepository
 	Distrito   queryParam
@@ -29,8 +27,8 @@ func NewGetFeiraService(repository interfaces.FeiraRepository) getFeiraService {
 	}
 }
 
-func (h *getFeiraService) Execute(queryString string, queryBy queryParam) (output []dto.Feira, err error) {
-	if output, err = h.repository.FindBy(queryString, queryBy.value); err != nil {
+func (h *getFeiraService) Execute(queryBy queryParam, queryString string) (output []dto.Feira, err error) {
+	if output, err = h.repository.FindBy(queryBy.value, queryString); err != nil {
 		return output, err
 	}
 

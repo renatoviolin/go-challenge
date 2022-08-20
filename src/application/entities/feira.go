@@ -14,7 +14,6 @@ var (
 )
 
 type Feira struct {
-	SetCens    string
 	CodDist    string
 	Distrito   string
 	SubPrefe   string
@@ -26,6 +25,7 @@ type Feira struct {
 	Numero     string
 	Bairro     string
 	Referencia string
+	SetCens    int64
 	Id         int64
 	Long       int64
 	Lat        int64
