@@ -2,6 +2,7 @@ package create_feira
 
 import (
 	"api-unico/application/entities"
+	"api-unico/errors"
 	"api-unico/repository/inMemory"
 	test_utils "api-unico/test-utils"
 	"testing"
@@ -24,6 +25,6 @@ func Test_CreateFeira_Invalid_Name(t *testing.T) {
 	service := NewCreateFeiraService(&repository)
 
 	id, err := service.Execute(entities.Feira(feira))
-	require.Equal(t, entities.ErrEmptyNomeFeira, err)
+	require.Equal(t, errors.ErrEmptyNomeFeira, err)
 	require.Equal(t, id, int64(0))
 }

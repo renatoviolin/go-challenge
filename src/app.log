@@ -1,8 +1,43 @@
 {"level":"info","message":"Starting server on port 8000"}
-{"level":"warn","type":"http","method":"GET","path":"/api/v1/health/asdasd","resp_time":0.000166,"status":404,"ip":"::1","message":"request"}
-{"level":"info","type":"http","method":"GET","path":"/api/v1/health","resp_time":0.32725,"status":200,"ip":"127.0.0.1","message":"request"}
-{"level":"info","type":"http","method":"GET","path":"/api/v1/health","resp_time":0.1,"status":200,"ip":"127.0.0.1","message":"request"}
-{"level":"info","type":"http","method":"GET","path":"/api/v1/health","resp_time":0.0815,"status":200,"ip":"127.0.0.1","message":"request"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/nome/teste","resp_time":6.413542,"status":200,"ip":"::1","message":"request"}
+{"level":"warn","from":"http","method":"GET","path":"/api/v1/feira/nome/","resp_time":0.000625,"status":404,"ip":"::1","message":"request"}
+{"level":"error","from":"GetFeiraService","message":"resource not found"}
+{"level":"error","from":"http","method":"GET","path":"/api/v1/feira/nome/testando","resp_time":7.378542,"status":500,"ip":"::1","message":"request"}
 {"level":"info","message":"Starting server on port 8000"}
-{"level":"error","from":"healthCheck","message":"testando um error"}
-{"level":"info","type":"http","method":"GET","path":"/api/v1/health","resp_time":0.173292,"status":200,"ip":"127.0.0.1","message":"request"}
+{"level":"warn","from":"http","method":"GET","path":"/api/v1/feira/nome/","resp_time":0.0005,"status":404,"ip":"::1","message":"request"}
+{"level":"info","message":"Starting server on port 8000"}
+{"level":"warn","from":"http","method":"GET","path":"/api/v1/feira/nome/","resp_time":0.000167,"status":404,"ip":"::1","message":"request"}
+{"level":"error","from":"GetFeiraService","message":"resource not found"}
+{"level":"error","from":"http","method":"GET","path":"/api/v1/feira/nome/testeasd","resp_time":22.403208,"status":500,"ip":"::1","message":"request"}
+{"level":"error","from":"GetFeiraService","message":"resource not found"}
+{"level":"error","from":"http","method":"GET","path":"/api/v1/feira/nome/testeasd","resp_time":4.899875,"status":500,"ip":"::1","message":"request"}
+{"level":"info","message":"Starting server on port 8000"}
+{"level":"error","from":"GetFeiraService","message":"resource not found"}
+{"level":"warn","from":"http","method":"GET","path":"/api/v1/feira/nome/testeasd","resp_time":15.377708,"status":400,"ip":"::1","message":"request"}
+{"level":"info","message":"Starting server on port 8000"}
+{"level":"error","from":"GetFeiraService","message":"resource not found"}
+{"level":"warn","from":"http","method":"GET","path":"/api/v1/feira/nome/testeasd","resp_time":14.140625,"status":404,"ip":"::1","message":"request"}
+{"level":"warn","from":"http","method":"GET","path":"/api/v1/feira/regiao/testeasd","resp_time":0.000458,"status":404,"ip":"::1","message":"request"}
+{"level":"warn","from":"http","method":"GET","path":"/api/v1/feira/regiao/testeasd","resp_time":0.000542,"status":404,"ip":"::1","message":"request"}
+{"level":"warn","from":"http","method":"GET","path":"/api/v1/feira/regiao/056ba","resp_time":0.0005,"status":404,"ip":"::1","message":"request"}
+{"level":"info","message":"Starting server on port 8000"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/regiao/056ba","resp_time":4.242125,"status":200,"ip":"::1","message":"request"}
+{"level":"error","from":"GetFeiraService","message":"resource not found"}
+{"level":"warn","from":"http","method":"GET","path":"/api/v1/feira/regiao/056baa","resp_time":6.177625,"status":404,"ip":"::1","message":"request"}
+{"level":"info","message":"Starting server on port 8000"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/regiao/056ba","resp_time":9.612959,"status":200,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/bairro/bairro","resp_time":7.964459,"status":200,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/bairro/bairro","resp_time":7.123208,"status":200,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/distrito/056ba","resp_time":6.2335,"status":200,"ip":"::1","message":"request"}
+{"level":"info","message":"Starting server on port 8000"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/distrito/056ba","resp_time":8.010083,"status":200,"ip":"::1","message":"request"}
+{"level":"error","from":"GetFeiraService","message":"resource not found"}
+{"level":"warn","from":"http","method":"GET","path":"/api/v1/feira/distrito/056ba105","resp_time":6.530042,"status":404,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/distrito/056ba104","resp_time":8.604208,"status":200,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/distrito/056ba10","resp_time":13.1955,"status":200,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/distrito/056ba","resp_time":4.310125,"status":200,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/distrito/05","resp_time":6.619334,"status":200,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/distrito/distrito","resp_time":6.42525,"status":200,"ip":"::1","message":"request"}
+{"level":"error","from":"GetFeiraService","message":"resource not found"}
+{"level":"warn","from":"http","method":"GET","path":"/api/v1/feira/distrito/distrita","resp_time":5.872541,"status":404,"ip":"::1","message":"request"}
+{"level":"info","from":"http","method":"GET","path":"/api/v1/feira/distrito/distrito","resp_time":5.76625,"status":200,"ip":"::1","message":"request"}

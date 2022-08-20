@@ -1,16 +1,8 @@
 package entities
 
 import (
-	"errors"
+	"api-unico/errors"
 	"strings"
-)
-
-var (
-	ErrEmptyNomeFeira  = errors.New("nome da feira vazio")
-	ErrEmptyRegiao5    = errors.New("região5 vazio")
-	ErrEmptyBairro     = errors.New("bairro vazio")
-	ErrEmptyDistrito   = errors.New("distrito vazio")
-	ErrEmptyLogradouro = errors.New("logradouro vazio")
 )
 
 type Feira struct {
@@ -39,19 +31,19 @@ func NewFeira() Feira {
 
 func (h *Feira) IsValid() error {
 	if len(strings.TrimSpace(h.NomeFeira)) == 0 {
-		return ErrEmptyNomeFeira
+		return errors.ErrEmptyNomeFeira
 	}
 	if len(strings.TrimSpace(h.Regiao5)) == 0 {
-		return ErrEmptyRegiao5
+		return errors.ErrEmptyRegiao5
 	}
 	if len(strings.TrimSpace(h.Bairro)) == 0 {
-		return ErrEmptyBairro
+		return errors.ErrEmptyBairro
 	}
 	if len(strings.TrimSpace(h.Distrito)) == 0 {
-		return ErrEmptyDistrito
+		return errors.ErrEmptyDistrito
 	}
 	if len(strings.TrimSpace(h.Logradouro)) == 0 {
-		return ErrEmptyLogradouro
+		return errors.ErrEmptyLogradouro
 	}
 	return nil
 }

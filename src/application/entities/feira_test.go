@@ -1,6 +1,7 @@
 package entities
 
 import (
+	"api-unico/errors"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -39,7 +40,7 @@ func Test_Feira_Invalid_Nome(t *testing.T) {
 	feira.Logradouro = "Logradouro"
 
 	err := feira.IsValid()
-	require.EqualError(t, ErrEmptyNomeFeira, err.Error())
+	require.EqualError(t, errors.ErrEmptyNomeFeira, err.Error())
 }
 
 func Test_Feira_Invalid_Regiao(t *testing.T) {
@@ -51,7 +52,7 @@ func Test_Feira_Invalid_Regiao(t *testing.T) {
 	feira.Logradouro = "Logradouro"
 
 	err := feira.IsValid()
-	require.EqualError(t, ErrEmptyRegiao5, err.Error())
+	require.EqualError(t, errors.ErrEmptyRegiao5, err.Error())
 }
 
 func Test_Feira_Invalid_Bairro(t *testing.T) {
@@ -63,7 +64,7 @@ func Test_Feira_Invalid_Bairro(t *testing.T) {
 	feira.Logradouro = "Logradouro"
 
 	err := feira.IsValid()
-	require.EqualError(t, ErrEmptyBairro, err.Error())
+	require.EqualError(t, errors.ErrEmptyBairro, err.Error())
 }
 
 func Test_Feira_Invalid_Distrito(t *testing.T) {
@@ -75,7 +76,7 @@ func Test_Feira_Invalid_Distrito(t *testing.T) {
 	feira.Logradouro = "Logradouro"
 
 	err := feira.IsValid()
-	require.EqualError(t, ErrEmptyDistrito, err.Error())
+	require.EqualError(t, errors.ErrEmptyDistrito, err.Error())
 }
 
 func Test_Feira_Invalid_Logradouro(t *testing.T) {
@@ -87,5 +88,5 @@ func Test_Feira_Invalid_Logradouro(t *testing.T) {
 	feira.Logradouro = ""
 
 	err := feira.IsValid()
-	require.EqualError(t, ErrEmptyLogradouro, err.Error())
+	require.EqualError(t, errors.ErrEmptyLogradouro, err.Error())
 }

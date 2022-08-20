@@ -2,7 +2,7 @@ package inMemory
 
 import (
 	"api-unico/dto"
-	"errors"
+	"api-unico/errors"
 	"fmt"
 	"math/rand"
 )
@@ -21,7 +21,7 @@ func (h *feiraRepository) Get(id int64) (dto.Feira, error) {
 			return el, nil
 		}
 	}
-	return dto.Feira{}, errors.New("resource not found")
+	return dto.Feira{}, errors.ErrResourceNotFound
 }
 
 func (h *feiraRepository) Create(feira dto.Feira) (int64, error) {
@@ -38,7 +38,7 @@ func (h *feiraRepository) Update(feira dto.Feira) error {
 			return nil
 		}
 	}
-	return errors.New("resource not found")
+	return errors.ErrResourceNotFound
 }
 
 func (h *feiraRepository) Delete(id int64) error {
@@ -48,7 +48,7 @@ func (h *feiraRepository) Delete(id int64) error {
 			return nil
 		}
 	}
-	return errors.New("resource not found")
+	return errors.ErrResourceNotFound
 }
 
 func (h *feiraRepository) FindBy(column string, query string) ([]dto.Feira, error) {
@@ -60,7 +60,7 @@ func (h *feiraRepository) FindBy(column string, query string) ([]dto.Feira, erro
 			}
 		}
 		if len(result) == 0 {
-			return result, errors.New("resource not found")
+			return result, errors.ErrResourceNotFound
 		}
 		return result, nil
 	}
@@ -71,7 +71,7 @@ func (h *feiraRepository) FindBy(column string, query string) ([]dto.Feira, erro
 			}
 		}
 		if len(result) == 0 {
-			return result, errors.New("resource not found")
+			return result, errors.ErrResourceNotFound
 		}
 		return result, nil
 	}
@@ -82,7 +82,7 @@ func (h *feiraRepository) FindBy(column string, query string) ([]dto.Feira, erro
 			}
 		}
 		if len(result) == 0 {
-			return result, errors.New("resource not found")
+			return result, errors.ErrResourceNotFound
 		}
 		return result, nil
 	}
@@ -93,7 +93,7 @@ func (h *feiraRepository) FindBy(column string, query string) ([]dto.Feira, erro
 			}
 		}
 		if len(result) == 0 {
-			return result, errors.New("resource not found")
+			return result, errors.ErrResourceNotFound
 		}
 		return result, nil
 	}

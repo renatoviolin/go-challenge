@@ -26,5 +26,10 @@ func (h *HttpServer) Routes() http.Handler {
 	h.router.Use(logger.HttpLogger())
 
 	h.router.GET("/api/v1/health", h.healthCheck)
+	h.router.GET("/api/v1/feira/nome/:query", h.findByNome)
+	h.router.GET("/api/v1/feira/regiao/:query", h.findByRegiao)
+	h.router.GET("/api/v1/feira/distrito/:query", h.findByDistrito)
+	h.router.GET("/api/v1/feira/bairro/:query", h.findByBairro)
+
 	return h.router
 }

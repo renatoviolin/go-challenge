@@ -2,8 +2,8 @@ package postgres
 
 import (
 	"api-unico/dto"
+	"api-unico/errors"
 	"database/sql"
-	"errors"
 	"fmt"
 
 	"github.com/jmoiron/sqlx"
@@ -32,7 +32,7 @@ func (h *feiraRepositorySQL) Get(id int64) (dto.Feira, error) {
 	}
 
 	if len(feirasNullable) == 0 {
-		return dto.Feira{}, errors.New("resource not found")
+		return dto.Feira{}, errors.ErrResourceNotFound
 	}
 
 	feiras := NullableToDto(feirasNullable)
@@ -79,7 +79,7 @@ func (h *feiraRepositorySQL) Update(feira dto.Feira) error {
 		return err
 	}
 	if rows == 0 {
-		return errors.New("resource not found")
+		return errors.ErrResourceNotFound
 	}
 
 	return nil
@@ -96,7 +96,7 @@ func (h *feiraRepositorySQL) Delete(id int64) error {
 		return err
 	}
 	if rows == 0 {
-		return errors.New("resource not found")
+		return errors.ErrResourceNotFound
 	}
 
 	return nil
@@ -114,7 +114,7 @@ func (h *feiraRepositorySQL) FindBy(column string, query string) ([]dto.Feira, e
 	}
 
 	if len(feirasNullable) == 0 {
-		return []dto.Feira{}, errors.New("resource not found")
+		return []dto.Feira{}, errors.ErrResourceNotFound
 	}
 
 	feiras := NullableToDto(feirasNullable)
