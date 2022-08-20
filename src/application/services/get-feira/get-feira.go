@@ -9,7 +9,7 @@ type queryParam struct {
 	value string
 }
 
-type getFeiraService struct {
+type GetFeiraService struct {
 	repository interfaces.FeiraRepository
 	Distrito   queryParam
 	Regiao     queryParam
@@ -17,8 +17,8 @@ type getFeiraService struct {
 	Bairro     queryParam
 }
 
-func NewGetFeiraService(repository interfaces.FeiraRepository) getFeiraService {
-	return getFeiraService{
+func NewGetFeiraService(repository interfaces.FeiraRepository) GetFeiraService {
+	return GetFeiraService{
 		repository: repository,
 		Distrito:   queryParam{"distrito"},
 		Regiao:     queryParam{"regiao5"},
@@ -27,7 +27,7 @@ func NewGetFeiraService(repository interfaces.FeiraRepository) getFeiraService {
 	}
 }
 
-func (h *getFeiraService) Execute(queryBy queryParam, queryString string) (output []dto.Feira, err error) {
+func (h *GetFeiraService) Execute(queryBy queryParam, queryString string) (output []dto.Feira, err error) {
 	if output, err = h.repository.FindBy(queryBy.value, queryString); err != nil {
 		return output, err
 	}

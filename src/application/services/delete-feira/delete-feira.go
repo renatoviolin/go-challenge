@@ -4,17 +4,17 @@ import (
 	"api-unico/application/interfaces"
 )
 
-type deleteFeiraService struct {
+type DeleteFeiraService struct {
 	repository interfaces.FeiraRepository
 }
 
-func NewDeleteFeiraService(repository interfaces.FeiraRepository) deleteFeiraService {
-	return deleteFeiraService{
+func NewDeleteFeiraService(repository interfaces.FeiraRepository) DeleteFeiraService {
+	return DeleteFeiraService{
 		repository: repository,
 	}
 }
 
-func (h *deleteFeiraService) Execute(id int64) (err error) {
+func (h *DeleteFeiraService) Execute(id int64) (err error) {
 	if err = h.repository.Delete(id); err != nil {
 		return err
 	}

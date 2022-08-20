@@ -6,17 +6,17 @@ import (
 	"api-unico/dto"
 )
 
-type createFeiraService struct {
+type CreateFeiraService struct {
 	repository interfaces.FeiraRepository
 }
 
-func NewCreateFeiraService(repository interfaces.FeiraRepository) createFeiraService {
-	return createFeiraService{
+func NewCreateFeiraService(repository interfaces.FeiraRepository) CreateFeiraService {
+	return CreateFeiraService{
 		repository: repository,
 	}
 }
 
-func (h *createFeiraService) Execute(input entities.Feira) (id int64, err error) {
+func (h *CreateFeiraService) Execute(input entities.Feira) (id int64, err error) {
 	if err := input.IsValid(); err != nil {
 		return 0, err
 	}
