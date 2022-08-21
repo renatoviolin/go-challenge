@@ -19,10 +19,12 @@ import (
 
 func TestMain(m *testing.M) {
 	test_utils.LoadVars()
+	exitVal := m.Run()
+	os.Exit(exitVal)
 }
 
 func generateInjections() FeiraController {
-	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	conn := fmt.Sprintf("postgres://%s:%s@%s:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"), os.Getenv("POSTGRES_HOST"))
 	connection := database.NewPostgreSQLConnection(conn)
 	repository := postgres.NewfeiraRepositorySQL(connection.Db)
 	createFeiraService := create_feira.NewCreateFeiraService(&repository)

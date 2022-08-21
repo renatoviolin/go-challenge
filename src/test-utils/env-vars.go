@@ -8,7 +8,6 @@ import (
 
 func LoadVars() {
 	paths := []string{"./.env", "../.env", "../../.env", "../../../.env", "../../../../.env", "../../../../../.env"}
-
 	for _, p := range paths {
 		err := gotenv.Load(p)
 		if err == nil {

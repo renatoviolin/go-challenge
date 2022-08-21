@@ -7,8 +7,12 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
  
+Makefile:14: warning: overriding commands for target `make'
+Makefile:11: warning: ignoring old commands for target `make'
+make: *** No rule to make target `all'.  Stop.
 
-# Make data base, printed on Fri Aug 19 16:31:45 2022
+
+# Make data base, printed on Sun Aug 21 12:18:45 2022
 
 # Variables
 
@@ -48,6 +52,8 @@ PATH = /Users/renato/go/bin:/Users/renato/.pyenv/shims:/opt/homebrew/bin:/opt/ho
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
 GOPATH = /Users/renato/go
+# environment
+LaunchInstanceID = FF5B190D-7596-4C18-A130-DB01F4B81B68
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
@@ -99,7 +105,7 @@ MAKE_VERSION := 3.81
 # environment
 USER = renato
 # makefile
-.DEFAULT_GOAL := run
+.DEFAULT_GOAL := run-dev
 # environment
 LESS = -R
 # automatic
@@ -144,6 +150,8 @@ MAKEFILES :=
 PAGER = less
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 186a6
 # automatic
 ^F = $(notdir $^)
 # default
@@ -155,9 +163,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 4679
+VSCODE_PID = 11774
 # variable set hash-table stats:
-# Load=72/1024=7%, Rehash=0, Collisions=2/96=2%
+# Load=74/1024=7%, Rehash=0, Collisions=2/98=2%
 
 # Pattern-specific Variable Values
 
@@ -165,9 +173,9 @@ VSCODE_PID = 4679
 
 # Directories
 
-# . (device 16777232, inode 8460185): 10 files, no impossibilities.
+# . (device 16777232, inode 8460185): 14 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 14 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -193,26 +201,26 @@ all:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 22:14:14
+#  Last modified 2022-08-21 11:34:08
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-test:
+test-dev:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 8):
-	cd src && go test -v -cover ./...
+	cd src && go clean -testcache && go test -v -cover ./...
 	
 
-build:
+build-dev:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 5):
-	go build -o main src/cmd/main.go 
+	cd src && go build -o main cmd/main.go 
 	
 
 # Not a target:
@@ -221,16 +229,40 @@ build:
 #  Modification time never checked.
 #  File has not been updated.
 
-run:
+make:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 14):
+	docker rm -f unico-app && docker build -t unico-app -f Dockerfile.app --no-cache . && docker run --name unico-app -p 8000:8000 --env-file .env -d unico-app
+	
+
+run-db:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 11):
+	docker rm -f unico-db && docker build -t unico-db -f Dockerfile.pgsql --no-cache . && docker run --name unico-db -p 5432:5432 --env-file .env -d unico-db
+	
+
+run-dev:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 2):
-	go run src/cmd/main.go
+	cd src && go run cmd/main.go
+	
+
+run-app:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 14):
+	docker rm -f unico-app && docker build -t unico-app -f Dockerfile.app --no-cache . && docker run --name unico-app -p 8000:8000 --env-file .env -d unico-app
 	
 
 # files hash-table stats:
-# Load=7/1024=1%, Rehash=0, Collisions=0/19=0%
+# Load=10/1024=1%, Rehash=0, Collisions=0/23=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -242,8 +274,6 @@ run:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri Aug 19 16:31:45 2022
+# Finished Make data base on Sun Aug 21 12:18:45 2022
 
  
-make: *** No rule to make target `all'.  Stop.
-

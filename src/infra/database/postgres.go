@@ -16,9 +16,8 @@ type postgreSQLConnection struct {
 func NewPostgreSQLConnection(connectionString string) postgreSQLConnection {
 	var db *sqlx.DB
 	var err error
-
-	for i := 0; i < 5; i++ {
-		time.Sleep(2 * time.Second)
+	for i := 0; i < 10; i++ {
+		time.Sleep(1 * time.Second)
 		db, err = sqlx.Connect("postgres", connectionString)
 		if err != nil {
 			logger.LogError("NewPostgreSQLConnection", fmt.Sprintf("retrying connection in database %d", i+1))

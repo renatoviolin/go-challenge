@@ -12,10 +12,12 @@ import (
 
 func TestMain(m *testing.M) {
 	test_utils.LoadVars()
+	exitVal := m.Run()
+	os.Exit(exitVal)
 }
 
-func Test_Create(t *testing.T) {
-	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+func Test_Connection(t *testing.T) {
+	conn := fmt.Sprintf("postgres://%s:%s@%s:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"), os.Getenv("POSTGRES_HOST"))
 	connection := database.NewPostgreSQLConnection(conn)
 	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 	feira := test_utils.GenerateFeiraDto("feira-teste-1")
@@ -24,8 +26,20 @@ func Test_Create(t *testing.T) {
 	require.Greater(t, id, int64(0))
 }
 
+func Test_Create(t *testing.T) {
+	conn := fmt.Sprintf("postgres://%s:%s@%s:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"), os.Getenv("POSTGRES_HOST"))
+	connection := database.NewPostgreSQLConnection(conn)
+	repositorySQL := NewfeiraRepositorySQL(connection.Db)
+	feira := test_utils.GenerateFeiraDto("feira-teste-1")
+	id, err := repositorySQL.Create(feira)
+	fmt.Println("merda")
+	fmt.Println(id)
+	require.NoError(t, err)
+	require.Greater(t, id, int64(0))
+}
+
 func Test_Update(t *testing.T) {
-	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	conn := fmt.Sprintf("postgres://%s:%s@%s:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"), os.Getenv("POSTGRES_HOST"))
 	connection := database.NewPostgreSQLConnection(conn)
 	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 
@@ -46,7 +60,7 @@ func Test_Update(t *testing.T) {
 }
 
 func Test_Update_Invalid(t *testing.T) {
-	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	conn := fmt.Sprintf("postgres://%s:%s@%s:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"), os.Getenv("POSTGRES_HOST"))
 	connection := database.NewPostgreSQLConnection(conn)
 	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 
@@ -57,7 +71,7 @@ func Test_Update_Invalid(t *testing.T) {
 }
 
 func Test_Delete(t *testing.T) {
-	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	conn := fmt.Sprintf("postgres://%s:%s@%s:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"), os.Getenv("POSTGRES_HOST"))
 	connection := database.NewPostgreSQLConnection(conn)
 	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 
@@ -73,7 +87,7 @@ func Test_Delete(t *testing.T) {
 }
 
 func Test_Delete_Invalid(t *testing.T) {
-	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	conn := fmt.Sprintf("postgres://%s:%s@%s:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"), os.Getenv("POSTGRES_HOST"))
 	connection := database.NewPostgreSQLConnection(conn)
 	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 
@@ -87,7 +101,7 @@ func Test_Delete_Invalid(t *testing.T) {
 }
 
 func Test_FindBy_Nome(t *testing.T) {
-	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	conn := fmt.Sprintf("postgres://%s:%s@%s:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"), os.Getenv("POSTGRES_HOST"))
 	connection := database.NewPostgreSQLConnection(conn)
 	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 
@@ -101,7 +115,7 @@ func Test_FindBy_Nome(t *testing.T) {
 }
 
 func Test_FindBy_Regiao5(t *testing.T) {
-	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	conn := fmt.Sprintf("postgres://%s:%s@%s:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"), os.Getenv("POSTGRES_HOST"))
 	connection := database.NewPostgreSQLConnection(conn)
 	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 
@@ -116,7 +130,7 @@ func Test_FindBy_Regiao5(t *testing.T) {
 }
 
 func Test_FindBy_Regiao5_Uppercase(t *testing.T) {
-	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	conn := fmt.Sprintf("postgres://%s:%s@%s:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"), os.Getenv("POSTGRES_HOST"))
 	connection := database.NewPostgreSQLConnection(conn)
 	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 

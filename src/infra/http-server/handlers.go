@@ -9,7 +9,7 @@ import (
 )
 
 func (h *HttpServer) healthCheck(ctx *gin.Context) {
-	ctx.JSON(200, gin.H{"message": "online"})
+	ctx.JSON(200, gin.H{"status": "online"})
 }
 
 func (h *HttpServer) findByNome(ctx *gin.Context) {
@@ -123,7 +123,7 @@ func (h *HttpServer) update(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(202, gin.H{"data": "successfully updated"})
+	ctx.JSON(202, gin.H{"message": "successfully updated"})
 }
 
 func (h *HttpServer) delete(ctx *gin.Context) {
@@ -140,5 +140,5 @@ func (h *HttpServer) delete(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(200, gin.H{"data": "successfully deleted"})
+	ctx.JSON(200, gin.H{"message": "successfully deleted"})
 }
