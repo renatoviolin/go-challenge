@@ -2,6 +2,8 @@ package database
 
 import (
 	"api-unico/infra/logger"
+	"fmt"
+	"time"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
@@ -12,11 +14,22 @@ type postgreSQLConnection struct {
 }
 
 func NewPostgreSQLConnection(connectionString string) postgreSQLConnection {
-	db, err := sqlx.Connect("postgres", connectionString)
-	if err != nil {
-		logger.Logger.Fatal().Msg(err.Error())
+	var db *sqlx.DB
+	var err error
+
+	for i := 0; i < 5; i++ {
+		time.Sleep(2 * time.Second)
+		db, err = sqlx.Connect("postgres", connectionString)
+		if err != nil {
+			logger.LogError("NewPostgreSQLConnection", fmt.Sprintf("retrying connection in database %d", i+1))
+		} else {
+			break
+		}
 	}
 
+	if db == nil {
+		logger.LogFatal("NewPostgreSQLConnection", "unable to connect at database")
+	}
 	return postgreSQLConnection{
 		Db: db,
 	}

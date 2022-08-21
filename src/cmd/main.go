@@ -12,13 +12,24 @@ import (
 	"api-unico/repository/postgres"
 	"fmt"
 	"net/http"
+	"os"
 	"time"
+
+	"github.com/subosito/gotenv"
 )
 
-const conn = "postgres://postgres:root@localhost:5432/db-unico?sslmode=disable"
+func loadVars() {
+	err1 := gotenv.Load(".env")
+	err2 := gotenv.Load("../.env")
+	if err1 != nil && err2 != nil {
+		logger.LogFatal("load-vars", err1.Error())
+	}
+}
 
 func generateInjections() controllers.FeiraController {
-	connection := database.NewPostgreSQLConnection(conn)
+	loadVars()
+	fmt.Println(os.Getenv("POSTGRES_CONNECTION_STRING"))
+	connection := database.NewPostgreSQLConnection(os.Getenv("POSTGRES_CONNECTION_STRING"))
 	repository := postgres.NewfeiraRepositorySQL(connection.Db)
 	createFeiraService := create_feira.NewCreateFeiraService(&repository)
 	updateFeiraService := update_feira.NewUpdateFeiraService(&repository)

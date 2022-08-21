@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-const conn = "postgres://postgres:root@localhost:5432/db-unico?sslmode=disable"
+const conn = "postgres://postgres:secret@localhost:5432/?sslmode=disable"
 
 func Test_Create(t *testing.T) {
 	postgres := database.NewPostgreSQLConnection(conn)
@@ -100,6 +100,20 @@ func Test_FindBy_Regiao5(t *testing.T) {
 	require.NoError(t, err)
 
 	existingFeiras, err := repositorySQL.FindBy("regiao5", "teste")
+	require.NoError(t, err)
+	require.GreaterOrEqual(t, len(existingFeiras), 1)
+}
+
+func Test_FindBy_Regiao5_Uppercase(t *testing.T) {
+	postgres := database.NewPostgreSQLConnection(conn)
+	repositorySQL := NewfeiraRepositorySQL(postgres.Db)
+
+	feira := test_utils.GenerateFeiraDto("feira-teste-find")
+	feira.Regiao5 = "teste de regiao 5"
+	_, err := repositorySQL.Create(feira)
+	require.NoError(t, err)
+
+	existingFeiras, err := repositorySQL.FindBy("regiao5", "TESTE")
 	require.NoError(t, err)
 	require.GreaterOrEqual(t, len(existingFeiras), 1)
 }

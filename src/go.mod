@@ -34,5 +34,6 @@ require (
 	github.com/lib/pq v1.10.6
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rs/zerolog v1.27.0
+	github.com/subosito/gotenv v1.4.0
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

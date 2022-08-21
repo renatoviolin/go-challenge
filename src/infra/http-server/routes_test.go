@@ -25,7 +25,7 @@ type outputPayload struct {
 	Data []dto.Feira `json:"data"`
 }
 
-const conn = "postgres://postgres:root@localhost:5432/db-unico?sslmode=disable"
+const conn = "postgres://postgres:secret@localhost:5432/?sslmode=disable"
 
 func generateInjections() controllers.FeiraController {
 	connection := database.NewPostgreSQLConnection(conn)

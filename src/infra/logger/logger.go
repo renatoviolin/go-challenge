@@ -2,6 +2,7 @@
 package logger
 
 import (
+	"io"
 	"os"
 	"time"
 
@@ -22,8 +23,9 @@ type ginHands struct {
 var Logger zerolog.Logger
 
 func InitLog() {
-	file, _ := os.OpenFile("app.log", os.O_APPEND|os.O_RDWR|os.O_CREATE, 0644)
-	Logger = zerolog.New(file)
+	fileLogger, _ := os.OpenFile("app.log", os.O_APPEND|os.O_RDWR|os.O_CREATE, 0644)
+	writer := io.MultiWriter(os.Stdout, fileLogger)
+	Logger = zerolog.New(writer).With().Timestamp().Logger()
 }
 
 func HttpLogger() gin.HandlerFunc {
@@ -68,9 +70,13 @@ func httpLogWrite(data *ginHands) {
 	}
 }
 func LogError(from string, msg string) {
-	Logger.Error().Str("from", from).Msg(msg)
+	Logger.Error().Str("from", from).Str("message", msg).Send()
 }
 
-func LogInfo(typeErro string, msg string) {
-	Logger.Info().Str("from", typeErro).Msg(msg)
+func LogInfo(from string, msg string) {
+	Logger.Info().Str("from", from).Str("message", msg).Send()
+}
+
+func LogFatal(from string, msg string) {
+	Logger.Fatal().Str("from", from).Str("message", msg).Send()
 }

@@ -5,6 +5,7 @@ import (
 	"api-unico/errors"
 	"database/sql"
 	"fmt"
+	"strings"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
@@ -25,7 +26,7 @@ func (h *feiraRepositorySQL) Get(id int64) (dto.Feira, error) {
 	err := h.db.Select(&feirasNullable,
 		`SELECT id, long, lat, setcens, areap, coddist, distrito, codsubpref, subprefe, 
 		regiao5, regiao8, nome_feira, registro, logradouro, numero, bairro, referencia 
-		FROM deinfo 
+		FROM feira 
 		WHERE id=$1 AND ativo=1`, id)
 	if err != nil {
 		return dto.Feira{}, err
@@ -42,7 +43,7 @@ func (h *feiraRepositorySQL) Get(id int64) (dto.Feira, error) {
 func (h *feiraRepositorySQL) Create(feira dto.Feira) (int64, error) {
 	var id int64
 	err := h.db.QueryRow(
-		`INSERT INTO deinfo(
+		`INSERT INTO feira(
 			long, lat, setcens, areap, coddist, distrito, codsubpref, subprefe, 
 			regiao5, regiao8, nome_feira, registro, logradouro, numero, bairro, referencia
 		) 
@@ -61,7 +62,7 @@ func (h *feiraRepositorySQL) Create(feira dto.Feira) (int64, error) {
 
 func (h *feiraRepositorySQL) Update(feira dto.Feira) error {
 	res, err := h.db.Exec(
-		`UPDATE deinfo 
+		`UPDATE feira 
 		 SET long=$1, lat=$2, setcens=$3, areap=$4, coddist=$5, distrito=$6, codsubpref=$7, 
 		 subprefe=$8, regiao5=$9, regiao8=$10, nome_feira=$11, registro=$12, logradouro=$13, 
 		 numero=$14, bairro=$15, referencia=$16
@@ -86,7 +87,7 @@ func (h *feiraRepositorySQL) Update(feira dto.Feira) error {
 }
 
 func (h *feiraRepositorySQL) Delete(id int64) error {
-	res, err := h.db.Exec(`UPDATE deinfo SET ativo=0 WHERE id=$1`, id)
+	res, err := h.db.Exec(`UPDATE feira SET ativo=0 WHERE id=$1`, id)
 	if err != nil {
 		return err
 	}
@@ -107,8 +108,8 @@ func (h *feiraRepositorySQL) FindBy(column string, query string) ([]dto.Feira, e
 	err := h.db.Select(&feirasNullable,
 		fmt.Sprintf(`SELECT id, long, lat, setcens, areap, coddist, distrito, codsubpref, subprefe, 
 		regiao5, regiao8, nome_feira, registro, logradouro, numero, bairro, referencia 
-		FROM deinfo 
-		WHERE ativo=1 AND %s LIKE $1`, column), "%"+query+"%")
+		FROM feira 
+		WHERE ativo=1 AND LOWER(%s) LIKE $1`, column), "%"+strings.ToLower(query)+"%")
 	if err != nil {
 		return []dto.Feira{}, err
 	}
