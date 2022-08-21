@@ -54,7 +54,7 @@ FeirPayload has the following fields:
 ## Install
 1. Clone this repository.
 ```
-git clone xxxxxxxxx
+git clone https://github.com/renatoviolin/go-challenge.git
 ```
 2. Review the .env file to adjust the credentials of your choice.
 ```
@@ -74,7 +74,7 @@ make run-app
 ## Run in development enviroment
 1. Clone this repository.
 ```
-git clone http://git@github.com/renatoviolin/challenge-unico-go
+git clone https://github.com/renatoviolin/go-challenge.git
 ```
 2. Review the .env file. Make sure to adjust POSTGRES_HOST to localhost.
 ```
@@ -100,6 +100,7 @@ make build-dev
 ```
 
 ## Notes
+* All logs output are saved in file app.log.
 * The CSV file needs a comma (,) in the last line and in the last charactere. This was done in the file provided here.
 * The CSV has some NULL values that must be managed to avoid errors while unmarshaling the resultset into go structure. There are two possible solutions:
     1. While import the file with copy command, fill empty strings in NULL values
