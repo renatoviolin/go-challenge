@@ -8,6 +8,8 @@ import (
 	"api-unico/infra/database"
 	"api-unico/repository/postgres"
 	test_utils "api-unico/test-utils"
+	"fmt"
+	"os"
 
 	"testing"
 
@@ -15,9 +17,12 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-const conn = "postgres://postgres:root@localhost:5432/db-unico?sslmode=disable"
+func TestMain(m *testing.M) {
+	test_utils.LoadVars()
+}
 
 func generateInjections() FeiraController {
+	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
 	connection := database.NewPostgreSQLConnection(conn)
 	repository := postgres.NewfeiraRepositorySQL(connection.Db)
 	createFeiraService := create_feira.NewCreateFeiraService(&repository)

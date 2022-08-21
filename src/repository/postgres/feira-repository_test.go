@@ -3,16 +3,21 @@ package postgres
 import (
 	"api-unico/infra/database"
 	test_utils "api-unico/test-utils"
+	"fmt"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/require"
 )
 
-const conn = "postgres://postgres:secret@localhost:5432/?sslmode=disable"
+func TestMain(m *testing.M) {
+	test_utils.LoadVars()
+}
 
 func Test_Create(t *testing.T) {
-	postgres := database.NewPostgreSQLConnection(conn)
-	repositorySQL := NewfeiraRepositorySQL(postgres.Db)
+	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	connection := database.NewPostgreSQLConnection(conn)
+	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 	feira := test_utils.GenerateFeiraDto("feira-teste-1")
 	id, err := repositorySQL.Create(feira)
 	require.NoError(t, err)
@@ -20,8 +25,9 @@ func Test_Create(t *testing.T) {
 }
 
 func Test_Update(t *testing.T) {
-	postgres := database.NewPostgreSQLConnection(conn)
-	repositorySQL := NewfeiraRepositorySQL(postgres.Db)
+	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	connection := database.NewPostgreSQLConnection(conn)
+	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 
 	feira := test_utils.GenerateFeiraDto("feira-teste-2")
 	id, err := repositorySQL.Create(feira)
@@ -40,8 +46,9 @@ func Test_Update(t *testing.T) {
 }
 
 func Test_Update_Invalid(t *testing.T) {
-	postgres := database.NewPostgreSQLConnection(conn)
-	repositorySQL := NewfeiraRepositorySQL(postgres.Db)
+	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	connection := database.NewPostgreSQLConnection(conn)
+	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 
 	feira := test_utils.GenerateFeiraDto("feira-teste-2")
 	feira.Id = -123
@@ -50,8 +57,9 @@ func Test_Update_Invalid(t *testing.T) {
 }
 
 func Test_Delete(t *testing.T) {
-	postgres := database.NewPostgreSQLConnection(conn)
-	repositorySQL := NewfeiraRepositorySQL(postgres.Db)
+	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	connection := database.NewPostgreSQLConnection(conn)
+	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 
 	feira := test_utils.GenerateFeiraDto("feira-teste-delete")
 	id, err := repositorySQL.Create(feira)
@@ -65,8 +73,9 @@ func Test_Delete(t *testing.T) {
 }
 
 func Test_Delete_Invalid(t *testing.T) {
-	postgres := database.NewPostgreSQLConnection(conn)
-	repositorySQL := NewfeiraRepositorySQL(postgres.Db)
+	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	connection := database.NewPostgreSQLConnection(conn)
+	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 
 	feira := test_utils.GenerateFeiraDto("feira-teste-delete")
 	_, err := repositorySQL.Create(feira)
@@ -78,8 +87,9 @@ func Test_Delete_Invalid(t *testing.T) {
 }
 
 func Test_FindBy_Nome(t *testing.T) {
-	postgres := database.NewPostgreSQLConnection(conn)
-	repositorySQL := NewfeiraRepositorySQL(postgres.Db)
+	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	connection := database.NewPostgreSQLConnection(conn)
+	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 
 	feira := test_utils.GenerateFeiraDto("feira-teste-find")
 	_, err := repositorySQL.Create(feira)
@@ -91,8 +101,9 @@ func Test_FindBy_Nome(t *testing.T) {
 }
 
 func Test_FindBy_Regiao5(t *testing.T) {
-	postgres := database.NewPostgreSQLConnection(conn)
-	repositorySQL := NewfeiraRepositorySQL(postgres.Db)
+	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	connection := database.NewPostgreSQLConnection(conn)
+	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 
 	feira := test_utils.GenerateFeiraDto("feira-teste-find")
 	feira.Regiao5 = "teste de regiao 5"
@@ -105,8 +116,9 @@ func Test_FindBy_Regiao5(t *testing.T) {
 }
 
 func Test_FindBy_Regiao5_Uppercase(t *testing.T) {
-	postgres := database.NewPostgreSQLConnection(conn)
-	repositorySQL := NewfeiraRepositorySQL(postgres.Db)
+	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	connection := database.NewPostgreSQLConnection(conn)
+	repositorySQL := NewfeiraRepositorySQL(connection.Db)
 
 	feira := test_utils.GenerateFeiraDto("feira-teste-find")
 	feira.Regiao5 = "teste de regiao 5"

@@ -28,8 +28,8 @@ func loadVars() {
 
 func generateInjections() controllers.FeiraController {
 	loadVars()
-	fmt.Println(os.Getenv("POSTGRES_CONNECTION_STRING"))
-	connection := database.NewPostgreSQLConnection(os.Getenv("POSTGRES_CONNECTION_STRING"))
+	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
+	connection := database.NewPostgreSQLConnection(conn)
 	repository := postgres.NewfeiraRepositorySQL(connection.Db)
 	createFeiraService := create_feira.NewCreateFeiraService(&repository)
 	updateFeiraService := update_feira.NewUpdateFeiraService(&repository)

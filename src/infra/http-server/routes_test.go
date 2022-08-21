@@ -16,6 +16,7 @@ import (
 	"io"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -25,9 +26,12 @@ type outputPayload struct {
 	Data []dto.Feira `json:"data"`
 }
 
-const conn = "postgres://postgres:secret@localhost:5432/?sslmode=disable"
+func TestMain(m *testing.M) {
+	test_utils.LoadVars()
+}
 
 func generateInjections() controllers.FeiraController {
+	conn := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/?sslmode=disable", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"))
 	connection := database.NewPostgreSQLConnection(conn)
 	repository := postgres.NewfeiraRepositorySQL(connection.Db)
 	createFeiraService := create_feira.NewCreateFeiraService(&repository)
