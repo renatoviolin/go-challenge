@@ -62,7 +62,7 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=secret
 POSTGRES_HOST=host.docker.internal
 ```
-3. Start the database and import the data. It is necessary to start the dabase before the application so that the test case can be performed.
+3. Start the database and import the data. It is necessary to start the database before the application so that the tests can be performed.
 ```
 make run-db
 ```
