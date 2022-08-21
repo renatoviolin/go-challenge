@@ -1,17 +1,17 @@
 # Challenge in Golang
 
-This repository implements the challenge that asks to implement an API with the following requirements.
+This repository implements a challenge that asks to implement an API in Golang with the following requirements.
 * import dataset from csv file;
 * create a new Feira object;
 * remove a Feira object given an id;
 * update a Feira object, except the id;
-* find Feira objects by at one of the params:
+* find Feira objects by one of the following params:
     1. distrito
     2. regiao
     3. nome_feira
     4. bairro
 
-Full description available [here](assets/challenge.pdf)
+The full description is available [here].(assets/challenge.pdf)
 
 ## Services available
 
@@ -28,7 +28,7 @@ Full description available [here](assets/challenge.pdf)
 
 Postman collection available [here](assets/GoChallenge.postman_collection.json).
 
-FeirPayload has the following fields:
+**FeiraPayload** has the following fields:
 ```json
 {
     "cod_dist": "87",
@@ -62,7 +62,7 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=secret
 POSTGRES_HOST=host.docker.internal
 ```
-3. Start the database and import the data. It is necessary to start the database before the application so that the tests can be performed.
+3. Start the database, create table and import the csv file. **It is necessary to start the database before the application so that the tests can be performed.**
 ```
 make run-db
 ```
@@ -76,13 +76,13 @@ make run-app
 ```
 git clone https://github.com/renatoviolin/go-challenge.git
 ```
-2. Review the .env file. Make sure to adjust POSTGRES_HOST to localhost.
+2. Review the .env file. Make sure to adjust **POSTGRES_HOST** to localhost.
 ```
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=secret
 POSTGRES_HOST=locahost
 ```
-3. Start the database and import the data.
+3. Start the database, create table and import the csv file.
 ```
 make run-db
 ```
@@ -100,9 +100,9 @@ make build-dev
 ```
 
 ## Notes
-* All logs output are saved in file app.log.
-* The CSV file needs a comma (,) in the last line and in the last charactere. This was done in the file provided here.
-* The CSV has some NULL values that must be managed to avoid errors while unmarshaling the resultset into go structure. There are two possible solutions:
-    1. While import the file with copy command, fill empty strings in NULL values
-    2. Mange the null in code as it was done here. It was decided to do this to avoid touch in dataprovied 
+* All logs output are saved in the file **app.log**.
+* The CSV file needs a comma (,) in the last line and last charactere. This was already done in the file provided [here](db/data.csv).
+* The CSV has some null values that must be managed to avoid errors while unmarshaling the resultset from postgres into Go structs. There are two possible solutions:
+    1. While import the file with copy command, fill in null strings.
+    2. Manage the null values in code (as it was done here). It was decided to do this to avoid touch in dataprovied 
 * When creating a new Feira, it was decided to require the fields: NomeFeira, Logradouro, Regiao5, Bairro, Distrito.
