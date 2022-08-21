@@ -15,9 +15,10 @@ type HttpServer struct {
 
 func NewHttpServer(feiraController controllers.FeiraController) HttpServer {
 	gin.SetMode(gin.ReleaseMode)
-	gin.DisableConsoleColor()
+	r := gin.New()
+	r.Use(gin.Recovery())
 	return HttpServer{
-		router:          gin.Default(),
+		router:          r,
 		feiraController: feiraController,
 	}
 }
