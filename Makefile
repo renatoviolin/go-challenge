@@ -12,3 +12,6 @@ make run-db:
 
 make run-app:
 	docker rm -f go-challenge-app && docker build -t go-challenge-app -f Dockerfile.app --no-cache . && docker run --name go-challenge-app -p 8000:8000 --env-file .env -d go-challenge-app && docker logs go-challenge-app --follow
+
+make swagger:
+	cd src && swag init -g infra/http-server/routes.go --output infra/http-server/docs
