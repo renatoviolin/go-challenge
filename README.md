@@ -28,6 +28,8 @@ The full description is available [here].(assets/challenge.pdf)
 
 Postman collection available [here](assets/GoChallenge.postman_collection.json).
 
+Swagger Documentation: [http://localhost:8000/swagger/index.html](http://localhost:8000/swagger/index.html)
+
 **FeiraPayload** has the following fields:
 ```json
 {

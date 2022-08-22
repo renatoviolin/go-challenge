@@ -5,9 +5,17 @@ import (
 	"api-unico/infra/logger"
 	"net/http"
 
+	_ "api-unico/infra/http-server/docs"
+
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
+// @title           Golang Challenge
+// @version         1.0
+// @host      localhost:8000
+// @BasePath  /api/v1
 type HttpServer struct {
 	router          *gin.Engine
 	feiraController controllers.FeiraController
@@ -35,6 +43,9 @@ func (h *HttpServer) Routes() http.Handler {
 	h.router.POST("/api/v1/feira", h.create)
 	h.router.PUT("/api/v1/feira", h.update)
 	h.router.DELETE("/api/v1/feira/:id", h.delete)
+
+	url := ginSwagger.URL("http://localhost:8000/swagger/doc.json")
+	h.router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 
 	return h.router
 }

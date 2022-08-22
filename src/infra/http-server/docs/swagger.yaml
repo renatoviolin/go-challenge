@@ -1,0 +1,191 @@
+basePath: /api/v1
+definitions:
+  dto.Feira:
+    properties:
+      areap:
+        type: integer
+      bairro:
+        type: string
+      cod_dist:
+        type: string
+      cod_sub_pref:
+        type: integer
+      distrito:
+        type: string
+      id:
+        type: integer
+      lat:
+        type: integer
+      logradouro:
+        type: string
+      long:
+        type: integer
+      nome_feira:
+        type: string
+      numero:
+        type: string
+      referencia:
+        type: string
+      regiao5:
+        type: string
+      regiao8:
+        type: string
+      registro:
+        type: string
+      set_cens:
+        type: integer
+      sub_prefe:
+        type: string
+    type: object
+host: localhost:8000
+info:
+  contact: {}
+  description: This is a sample server celler server.
+  termsOfService: http://swagger.io/terms/
+  title: Golang Challenge
+  version: "1.0"
+paths:
+  /feira:
+    post:
+      parameters:
+      - description: Add feira
+        in: body
+        name: feira
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Feira'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+      summary: Create feira
+    put:
+      parameters:
+      - description: Update feira
+        in: body
+        name: feira
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Feira'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+      summary: Update feira
+  /feira/{id}:
+    delete:
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      summary: Delete feira
+  /feira/bairro/{query}:
+    get:
+      parameters:
+      - description: query
+        in: path
+        name: query
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.Feira'
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      summary: Find feira by bairro
+  /feira/distrito/{query}:
+    get:
+      parameters:
+      - description: query
+        in: path
+        name: query
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.Feira'
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      summary: Find feira by distrito
+  /feira/nome/{query}:
+    get:
+      parameters:
+      - description: query
+        in: path
+        name: query
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.Feira'
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      summary: Find feira by nome
+  /feira/regiao/{query}:
+    get:
+      parameters:
+      - description: query
+        in: path
+        name: query
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.Feira'
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      summary: Find feira by regiao
+  /health:
+    get:
+      responses:
+        "200":
+          description: OK
+      summary: Show server status
+swagger: "2.0"
