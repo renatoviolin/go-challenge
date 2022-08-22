@@ -100,6 +100,10 @@ make run-dev
 ```
 make build-dev
 ```
+7. Update Swagger
+```
+make swagger
+```
 
 ## Notes
 * All logs output are saved in the file **app.log**.

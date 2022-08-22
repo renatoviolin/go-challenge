@@ -40,8 +40,6 @@ definitions:
 host: localhost:8000
 info:
   contact: {}
-  description: This is a sample server celler server.
-  termsOfService: http://swagger.io/terms/
   title: Golang Challenge
   version: "1.0"
 paths:
